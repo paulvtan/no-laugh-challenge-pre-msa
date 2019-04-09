@@ -1,4 +1,4 @@
-# 😂 Try Not to Laugh Challenge The Game! 🤣
+# 😂 Try Not to Laugh Challenge The Game! 😂
 
 <p align="center"><img src="images/cognitiveicon.gif"  width="250" alt="Cognitive Service Logo"/></p>
 
@@ -37,7 +37,7 @@ So, basically not only you will learn about building a basic web application in 
 
 Don't be intimidated, this guide aims to be easy enough for anyone with little to no prior programming experience to follow.
 
-**(However, *passion* is required!).**
+**(However, *passion* is absolutely required!).**
 
 Keep in mind that for the purpose of keeping this guide simple and straight forward as a practical example for demonstrating cognitive services in action, we will not be going into much details around programming. 
 
@@ -86,7 +86,7 @@ Before we get started you will need to equip yourself with the right tools, foll
 
 #### *Setting up your development environment*
 
-1. **Visual Studio Code**&nbsp;<img src="images/visualstudiocode.png"  width="16" alt="VS Code Logo"/>
+1. **Visual Studio Code**&nbsp;<img src="images/visualstudiocode.png"  width="20" alt="VS Code Logo"/>
 
       - Visual Studio is a perfect code editor for the job as it's easy to setup and provides great supports for web development.               [Download Visual Studio Code](https://code.visualstudio.com/)
 
@@ -104,6 +104,7 @@ Before we get started you will need to equip yourself with the right tools, foll
 
      - npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. Npm comes with Node.js installation, and it allows us to easily create react application from boilerplate code or install other required libraries later on. *(Comes with Node.js)*
 
+Now that you have your environment setup and ready to go. Read a bit about the submission criteria below to familiarize yourself with what to expect for MSA Phase 1. 
 
 
 ## Submission Criteria
@@ -111,3 +112,18 @@ Before we get started you will need to equip yourself with the right tools, foll
 Coming soon.
 
 ## Where from here?
+
+You are ready to go. Dig in and start coding! Simply follow the 3 parts tutorial in this guide.
+
+#### Part 1 - **1. Implementing Video Player.**
+
+#### Part 2 - **2. Implementing Real-time Emotion Analysis**
+
+#### Part 3 - **3. Integrating Both Part Together**
+
+**Good luck and have fun!**
+
+*We would love to hear your feedback. Discuss them on Facebook Group or email us at nzmsa@microsoft.com*
+
+
+Evenlyn & Paul 😊
