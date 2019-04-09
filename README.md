@@ -31,7 +31,7 @@ Your app will utilize the power of **Vision API** *(Face)* in order to detect an
 
 So, basically not only you will learn about building a basic web application in **React JS** *(Which is really popular right now)* and implementing AI capabilities into your web app, you will finish this module with a fully functional web application you can show off to your mates or employers. 👍
 
-<p align="center">Place Holder for Evelyn and Paul GIF using the web app.</p>
+<p align="center">[Place Holder for Evelyn and Paul GIF using the web app.]</p>
 
 ## Knowledge Requirements
 
@@ -39,7 +39,9 @@ Don't be intimidated, this guide aims to be easy enough for anyone with little t
 
 **(However, *passion* is required!).**
 
-Keep in mind that for the purpose of keeping this guide simple and straight forward as a practical example for demonstrating cognitive services in action, it is required that you further study the area where you find yourself lack understanding. As per usual, use [MSA Facebook group](https://www.facebook.com/groups/msaccelerator/) to ask questions, reach out to MSPs, friends but remember to Google for answers first. 😊 
+Keep in mind that for the purpose of keeping this guide simple and straight forward as a practical example for demonstrating cognitive services in action, we will not be going into much details around programming. 
+
+It is required that you further study the area where you find yourself lack understanding. As per usual, use [MSA Facebook group](https://www.facebook.com/groups/msaccelerator/) to ask questions, reach out to MSPs, friends but remember to Google for answers first. 😊 
 
 **However skills in following domain will helps**
 
@@ -80,7 +82,21 @@ Keep in mind that for the purpose of keeping this guide simple and straight forw
 
 ## Getting Started
 
-## Setting up your development environment
+Before we get started you will need to equip yourself with the right tools, follow the remaining instruction below to setup your developmnet environment. 
+
+#### *Setting up your development environment*
+
+1. **Visual Studio Code**&nbsp;<img src="images/visualstudiocode.png"  width="16" alt="VS Code Logo"/>
+
+      - Visual Studio is a perfect code editor for the job as it's easy to setup and provides great supports for web development.               [Download Visual Studio Code](https://code.visualstudio.com/)
+
+2. **GitHub + Git & GitHub Desktop** <img src="images/GitHubDesktopLogo.png"  width="20" alt="GitHub Desktop Logo"/>
+
+      - We will be using **GitHub**, which utilizes Git for our version control. [Get Started with GitHub & Git here](https://github.com/NZMSA/2017-Phase-1-Module-2/tree/master/2.%20Introduction%20to%20Git)
+      
+      - **GitHub Desktop** is a handy GUI desktop application, which helps you easily work with your GitHub's repo instead of through Git command line. [Download GitHub Desktop](https://desktop.github.com/)
+     
+
 
 ## Submission Criteria
 
