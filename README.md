@@ -90,12 +90,20 @@ Before we get started you will need to equip yourself with the right tools, foll
 
       - Visual Studio is a perfect code editor for the job as it's easy to setup and provides great supports for web development.               [Download Visual Studio Code](https://code.visualstudio.com/)
 
-2. **GitHub + Git & GitHub Desktop** <img src="images/GitHubDesktopLogo.png"  width="20" alt="GitHub Desktop Logo"/>
+2. **GitHub + Git & GitHub Desktop** <img src="images/GitHubLogo.svg"  width="24" alt="GitHub Logo"/> + <img src="images/GitHubDesktopLogo.png"  width="27" alt="GitHub Desktop Logo"/> 
 
       - We will be using **GitHub**, which utilizes Git for our version control. [Get Started with GitHub & Git here](https://github.com/NZMSA/2017-Phase-1-Module-2/tree/master/2.%20Introduction%20to%20Git)
       
       - **GitHub Desktop** is a handy GUI desktop application, which helps you easily work with your GitHub's repo instead of through Git command line. [Download GitHub Desktop](https://desktop.github.com/)
+      
+3. **Node.js** <img src="images/nodejslogo.png"  width="40" alt="Node.js Logo"/>
      
+     - Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser. [Download Node.js](https://nodejs.org/en/)
+     
+4. **NPM** <img src="images/npmlogo.png"  width="40" alt="npm Logo"/>
+
+     - npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. Npm comes with Node.js installation, and it allows us to easily create react application from boilerplate code or install other required libraries later on. *(Comes with Node.js)*
+
 
 
 ## Submission Criteria
