@@ -104,11 +104,12 @@ Before we get started you will need to equip yourself with the right tools, foll
 
      - npm is a package manager for the JavaScript programming language. It is the default package manager for the JavaScript runtime environment Node.js. Npm comes with Node.js installation, and it allows us to easily create react application from boilerplate code or install other required libraries later on. *(Comes with Node.js)*
 
-Now that you have your environment setup and ready to go. Read a bit about the submission criteria below to familiarize yourself with what to expect for MSA Phase 1. 
 
 5. **Azure Account** <img src="images/AzureLogo.png"  width="60" alt="Azure Logo"/>
 
       - Microsoft Azure is a cloud computing service. To utilize cognitive services APIs to thier full potential, you will need an Azure account, which comes with trial credit.  Headover to [Microsoft Azure](https://azure.microsoft.com/en-us/free/). Students are eligible to signup with student benefits - [Azure for students](https://azure.microsoft.com/en-us/free/students/).
+
+Now that you have your environment setup and ready to go. Read a bit about the submission criteria below to familiarize yourself with what to expect for MSA Phase 1. 
 
 ## Submission Criteria
 
