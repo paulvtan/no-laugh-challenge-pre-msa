@@ -106,6 +106,7 @@ Before we get started you will need to equip yourself with the right tools, foll
 
 Now that you have your environment setup and ready to go. Read a bit about the submission criteria below to familiarize yourself with what to expect for MSA Phase 1. 
 
+5. **Azure Account** <img src="images/AzureLogo.png"  width="60" alt="Azure Logo"/>
 
 ## Submission Criteria
 
