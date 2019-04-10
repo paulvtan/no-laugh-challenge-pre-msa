@@ -192,7 +192,6 @@ In this case `Displayer` will have one PropTypes called `posts`, which is an man
 
 ```javascript
 import React from 'react'
-import ReactPlayer from 'react-player'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import Video from './Video'
