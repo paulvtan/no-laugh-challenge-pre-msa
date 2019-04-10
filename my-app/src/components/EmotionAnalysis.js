@@ -16,6 +16,18 @@ function EmotionAnalysis() {
     );
 }
 
+function getProgressBarColour(percent) {
+    var variant = "";
+        if (percent <= 50) {
+            variant = "success";
+        } else if (percent <= 90) {
+            variant = "warning";
+        } else {
+            variant = "danger";
+        }
+        return variant;
+    }
+
 function Result(props) {
     return (
         <div>
@@ -24,7 +36,7 @@ function Result(props) {
                     <Col />
                     <Col xs={10}>
                         <h1>{props.result < 100 ? props.result + '%' : <GameOver />}</h1>
-                        <ProgressBar now={props.result} variant="danger" />
+                        <ProgressBar animated now={props.result} variant={getProgressBarColour(props.result)} />
                     </Col>
                     <Col />
                 </Row>
