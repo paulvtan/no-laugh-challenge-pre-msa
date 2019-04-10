@@ -19,7 +19,7 @@ class MyWebcam extends React.Component {
             const image = this.webcam.getScreenshot();
             const byteArrayImage = this.convertToByteArray(image);
             this.fetchData(byteArrayImage);
-        }, 150);
+        }, 100);
     }
 
     convertToByteArray = (image) => {
