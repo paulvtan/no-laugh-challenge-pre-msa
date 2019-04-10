@@ -108,6 +108,8 @@ Now that you have your environment setup and ready to go. Read a bit about the s
 
 5. **Azure Account** <img src="images/AzureLogo.png"  width="60" alt="Azure Logo"/>
 
+      - Microsoft Azure is a cloud computing service. To utilize cognitive services APIs to thier full potential, you will need an Azure account, which comes with trial credit.  Headover to [Microsoft Azure](https://azure.microsoft.com/en-us/free/). Students are eligible to signup with student benefits - [Azure for students](https://azure.microsoft.com/en-us/free/students/).
+
 ## Submission Criteria
 
 Coming soon.
