@@ -49,8 +49,6 @@ class MyWebcam extends React.Component {
                         this.isCapturing = false;
                         this.props.onReceivedResult(100);
                     }
-                    // if (happiness === 1) clearInterval(this.timerId);
-                    // this.props.onReceivedResult(happiness);
                 });
             }
         });
