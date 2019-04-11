@@ -14,7 +14,7 @@ So you better keep a straight face!
  [place holder for a gif demo]
  
  
- ## 1. Building a webcam component.
+ ## 1. Building a webcam component. 📷
  
  In this section, we will first build our **MyWebcam** component to display the video feed on the screen as well as taking care of sending/retreiving API data.
  
@@ -36,6 +36,10 @@ Use `import Webcam from "react-webcam";`, and Create a class **MyWebcam.js**, wh
 
 At the bottom don't forget to `export default MyWebcam` class component so that it is made available to use by other components.
 
+
+<details><summary><b>CODE<b></summary>
+<p>
+
 ```javascript
 import React from "react";
 import Webcam from "react-webcam";
@@ -49,7 +53,58 @@ class MyWebcam extends React.Component {
 export default MyWebcam
 ```
 
+</p>
+</details>
 
 
+### 1.3 MyWebcam quick test 🔧
+
+Let's test our newly defined component. In **App.js** import the component, and add it to a return statement in render function of the **App** class. 
+
+Runs `npm start` from PowerShell to see the changes.
+
+💡 **Tips:** Comment out part 1 components being return for now to easily test development of part 2. Use `Ctrl + K + F` simultaneously to comment out a section of code. Use `Ctrl + K + U` to uncomment.
+
+<details><summary><b>CODE<b></summary>
+<p>
+
+```javascript
+import MyWebcam from './components/MyWebcam'
+
+class App extends Component {
+
+...
+
+    render() {
+        return (<div>
+            {/* <Title title={'No-Laugh Challenge'} />
+            <AddVideo onAddVideo={(addedPost) => {
+                this.addVideo(addedPost)
+            }}/>
+            <div className = "video-wrapper">
+                <Displayer posts={this.state.posts} />
+            </div> */}
+            
+            <MyWebcam />
+            
+        </div>
+        )
+    }
+}
+```
+
+</p>
+</details>
+
+
+You should be able see the webcam in effect!
+
+<details><summary><b>CODE<b></summary>
+<p>
+
+
+
+</p>
+</details>
 
 
