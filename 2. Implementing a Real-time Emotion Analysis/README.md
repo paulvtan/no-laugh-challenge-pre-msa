@@ -63,7 +63,7 @@ Let's test our newly defined component. In **App.js** import the component, and 
 
 Runs `npm start` from PowerShell to see the changes.
 
-💡 **Tips:** Comment out part 1 components being return for now to easily test development of part 2. Use `Ctrl + K + F` simultaneously to comment out a section of code. Use `Ctrl + K + U` to uncomment.
+💡 **Tips:** Comment out part 1 components being return for now to easily test development of part 2. Use `Ctrl + K + F` simultaneously to comment out a section of code. Use `Ctrl + K + U` to uncomment. 
 
 <details><summary><b>View Code 🖱️<b></summary>
 <p>
@@ -101,13 +101,17 @@ You should be able see the webcam in effect!
 
 ### 1.4 Adjusting the camera 
 
-Next we will adjust the camera using the props value below. Try experimenting using different sizes of the video element.
+Next we will adjust the camera using the props value below. 
 
-Here we use **setRef** to reference the <Webcam /> component and assigning it to this.webcam variable, which allow us to later on invoke a function on webcam component.
+Here we use **setRef** to reference the `<Webcam />` component and assigning it to this.webcam variable, which allow us to later on invoke a function on webcam component.
 
 We also defined a **videoConstraints** constant which define settings for our device's webcam.
 
-Pass in both props into <Webcam /> components.
+Pass in both props as well as width and height into `<Webcam />` components .
+
+Try experimenting with width and height props to see how they affect the size of the video element.
+
+💡 **Tips:**  `Ctrl + A` to highlight all code then `ctrl + K + F` to automatically format the indentation!
 
 <details><summary><b>View Code 🖱️<b></summary>
 <p>
@@ -134,8 +138,8 @@ class MyWebcam extends React.Component {
         return (
             <Webcam
                 audio={false}
-                height={250}
-                width={375}
+                height={1000}
+                width={750}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
@@ -158,6 +162,8 @@ export default MyWebcam
 <details><summary><b>View Code 🖱️<b></summary>
 <p>
 
+```javascript
+```
 
 
 </p>
