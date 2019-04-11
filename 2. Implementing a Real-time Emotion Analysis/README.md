@@ -37,24 +37,7 @@ Use `import Webcam from "react-webcam";`, and Create a class **MyWebcam.js**, wh
 At the bottom don't forget to `export default MyWebcam` class component so that it is made available to use by other components.
 
 
-<details><summary><b>View Code 🖱️<b></summary>
-<p>
 
-```javascript
-import React from "react";
-import Webcam from "react-webcam";
- 
-class MyWebcam extends React.Component {
-  render() {
-    return <Webcam />;
-  }
-}
-
-export default MyWebcam
-```
-
-</p>
-</details>
 
 
 ### 1.3 MyWebcam quick test 🔧
