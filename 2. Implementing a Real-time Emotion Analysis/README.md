@@ -14,7 +14,7 @@ So you better keep a straight face!
  [place holder for a gif demo]
  
  
- ## 1. Building a webcam component. 📷
+## 1. Building a webcam component. 📷
  
  In this section, we will first build our **MyWebcam** component to display the video feed on the screen as well as taking care of sending/retreiving API data.
  
@@ -163,7 +163,11 @@ Define a constructor for **MyWebcam** class with two properties `this.timerId`, 
 
 Next, create **startCapturing** that execute a function to start the capturing process. Here we use `setInterval()` method to invoke `this.webcam.getScreenshot()` every 2 seconds which returns a base64 encoded string of the image. 
 
-Finally add a button under the **Webcam** component, add a button with onClick attribute to fires `startCapturing` into taking photos every 2 seconds.
+Finally add a 'Start Game!' button under the **Webcam** component, add a button with onClick attribute to fires `startCapturing` into taking photos every 2 seconds.
+
+Run the app, open developer console `F12` and start the game, you should see the base64 encoded string representation of the image being logged.
+
+💡 **Tips:** If you copy & paste the encoded image into the URL of chrome, you can render the image taken! 
 
 <details><summary><b>View Code 🖱️<b></summary>
 <p>
@@ -216,7 +220,9 @@ class MyWebcam extends React.Component {
 </p>
 </details>
 
+## 2. Fetching emotion data from Cognitive Services Face API.
 
+We will construct a function to send off an image and fetch a JSON response from the Microsoft Cognitive Services API. 
 
 ==============================================
 <details><summary><b>View Code 🖱️<b></summary>
