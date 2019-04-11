@@ -39,7 +39,7 @@ At the bottom don't forget to `export default MyWebcam` class component so that 
 <details><summary><b>View Code 🖱️<b></summary>
 
 
-```javascript
+```
 import React from "react";
 import Webcam from "react-webcam";
  
