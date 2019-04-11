@@ -36,7 +36,7 @@ Use `import Webcam from "react-webcam";`, and Create a class **MyWebcam.js**, wh
 
 At the bottom don't forget to `export default MyWebcam` class component so that it is made available to use by other components.
 
-<details><summary><b>View Code 🖱️</b></summary>
+<details><summary><b>View Code</b> 🖱️ </summary>
 
 
 ```javascript
@@ -64,7 +64,7 @@ Runs `npm start` from PowerShell to see the changes.
 
 💡 **Tips:** Comment out part 1 components being return for now to easily test development of part 2. Use `Ctrl + K + F` simultaneously to comment out a section of code. Use `Ctrl + K + U` to uncomment. 
 
-<details><summary><b>View Code<b></summary>
+<details><summary><b>View Code</b> 🖱️ </summary>
 <p>
 
 ```javascript
@@ -112,7 +112,7 @@ Try experimenting with width and height props to see how they affect the size of
 
 💡 **Tips:**  `Ctrl + A` to highlight all code then `Ctrl + K + F` to automatically format the indentation!
 
-<details><summary><b>View Code<b></summary>
+<details><summary><b>View Code</b> 🖱️ </summary>
 <p>
 
 ```javascript
@@ -168,7 +168,7 @@ Run the app, open developer console `F12` and start the game, you should see the
 
 💡 **Tips:** If you copy & paste the encoded image into the URL of chrome, you can render the image taken! 
 
-<details><summary><b>View Code<b></summary>
+<details><summary><b>View Code</b> 🖱️ </summary>
 <p>
 
 ```javascript
@@ -224,7 +224,7 @@ class MyWebcam extends React.Component {
 We will construct a function to send off an image and fetch a JSON response from the Microsoft Cognitive Services API. 
 
 ==============================================
-<details><summary><b>View Code<b></summary>
+<details><summary><b>View Code</b> 🖱️ </summary>
 <p>
 
 ```javascript
