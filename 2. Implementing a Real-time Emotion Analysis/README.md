@@ -37,7 +37,7 @@ Use `import Webcam from "react-webcam";`, and Create a class **MyWebcam.js**, wh
 At the bottom don't forget to `export default MyWebcam` class component so that it is made available to use by other components.
 
 
-<details><summary><b>CODE<b></summary>
+<details><summary><b>View Code 🖱️<b></summary>
 <p>
 
 ```javascript
@@ -65,7 +65,7 @@ Runs `npm start` from PowerShell to see the changes.
 
 💡 **Tips:** Comment out part 1 components being return for now to easily test development of part 2. Use `Ctrl + K + F` simultaneously to comment out a section of code. Use `Ctrl + K + U` to uncomment.
 
-<details><summary><b>CODE<b></summary>
+<details><summary><b>View Code 🖱️<b></summary>
 <p>
 
 ```javascript
@@ -99,7 +99,63 @@ class App extends Component {
 
 You should be able see the webcam in effect!
 
-<details><summary><b>CODE<b></summary>
+### 1.4 Adjusting the camera 
+
+Next we will adjust the camera using the props value below. Try experimenting using different sizes of the video element.
+
+Here we use **setRef** to reference the <Webcam /> component and assigning it to this.webcam variable, which allow us to later on invoke a function on webcam component.
+
+We also defined a **videoConstraints** constant which define settings for our device's webcam.
+
+Pass in 
+
+<details><summary><b>View Code 🖱️<b></summary>
+<p>
+
+```javascript
+import React from "react";
+import Webcam from "react-webcam";
+
+class MyWebcam extends React.Component {
+
+    setRef = webcam => {
+        this.webcam = webcam;
+    };
+
+
+    render() {
+
+        const videoConstraints = {
+            width: 750,
+            height: 500,
+            facingMode: "user"
+        };
+
+        return (
+            <Webcam
+                audio={false}
+                height={250}
+                width={375}
+                ref={this.setRef}
+                screenshotFormat="image/jpeg"
+                videoConstraints={videoConstraints}
+            />
+        );
+    }
+}
+
+export default MyWebcam
+
+```
+
+</p>
+</details>
+
+
+
+
+==============================================
+<details><summary><b>View Code 🖱️<b></summary>
 <p>
 
 
