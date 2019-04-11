@@ -107,7 +107,7 @@ Here we use **setRef** to reference the <Webcam /> component and assigning it to
 
 We also defined a **videoConstraints** constant which define settings for our device's webcam.
 
-Pass in 
+Pass in both props into <Webcam /> components.
 
 <details><summary><b>View Code 🖱️<b></summary>
 <p>
