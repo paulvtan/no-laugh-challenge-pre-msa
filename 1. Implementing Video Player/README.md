@@ -1,4 +1,4 @@
-# Implementing Video Player
+# Implementing Video Player Component
 ## Getting started
 Firstly, check that if you have node and npm installed.  
 To check if you have Node.js installed, run this command in your terminal:  
@@ -14,7 +14,7 @@ To create a new app, we choose to use `npm` method.
 
 In your terminal, navigate to the destination folder that you want to create your application. type in the following command:
 
-```npm init react-app my-app```  
+`npm init react-app my-app`  
 
 (_`npm init <initializer>`_ is available in `npm` 6+)
 
@@ -41,45 +41,39 @@ my-app
     └── serviceWorker.js
 ```
 ## Running the app
-Once installation is done, navigate to your project folder:  
-```npm start```  
+Once installation is done, navigate to your project folder:
+
+`npm start`
+
 Then open http://localhost:3000/ to see your app.
 
 Now you are good to go to the next step building your own React App by editing src/App.js
 
 ## Installing packages
-There are many existing packages (libraries) that we can utilize to create cool components of own React application. In order to implement video components, we will use `react-player`, `react-router-dom` and `prop-types`.
+There are many existing packages (libraries) that we can utilize to create cool components of own React application. In order to implement video components, we will use `react-player` and `prop-types`.
 
 If your app is still running, press `ctrl+C` (Windows) or `command+C` (MacOS) in your terminal. Make sure you are in you project folder 'my-app'. Let's install:
 1. [react-player](https://www.npmjs.com/package/react-player)
 
-```npm install react-player --save```
+`npm install react-player --save`
 
 This will enable you to display and control components related to video in your React application.
 
-2. [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+2. [prop-types](https://www.npmjs.com/package/prop-types)
 
-```npm install --save react-router-dom```
-
-React-router is used for navigation purposes in a react application.  
-
-3. [prop-types](https://www.npmjs.com/package/prop-types)
-
-```npm install --save prop-types```
+`npm install --save prop-types`
 
 PropTypes was originally exposed as part of the React core module, and is commonly used with React components. It helps you to catch bugs and serves as a handy documentation on how a component has to be used in terms of passing props.
 
-## Implementing video player
+## Implementing video player components
+
+Generally, we will have 4 components named `Title`, `Video`, `Displayer` and `AddVideo` to handle the action of submitting a video link and display the video within the application.
 
 In folder **src**, create a folder named **Components** containing files named `Title.js`, `Video.js`, `Displayer.js`, and `AddVideo.js`.
 
 ### App.js
 
-Firstly, in App.js, we will have `render()` method to display all of our components on our application.
-
-Secondly, `constructor()`, `addVideo()` to handle the action of passing an url and mapping it through `Video.js` and `Displayer.js`, which is called **state management** in React.
-
-Now add the following code inside your `App.js`:
+Firstly, in App.js, we will import all the components and display them using `render()` method.
 
 ```javascript
 import React, { Component } from 'react'
@@ -87,16 +81,36 @@ import './Components/stylesheet.css'
 import Displayer from './Components/Displayer'
 import Title from './Components/Title'
 import AddVideo from './Components/AddVideo'
-import {Route} from 'react-router-dom'
 
 class App extends Component {
-  constructor(){
+  render() {
+      return (<div>
+          <Title title={'No-Laugh Challenge'} />
+          <AddVideo onAddVideo={(addedPost) => {
+              this.addVideo(addedPost)
+          }}/>
+          <div className = "video-wrapper">
+              <Displayer posts={this.state.posts} />
+          </div>
+      </div>
+      )
+  }
+}
+
+export default App;
+```
+
+Secondly, `constructor()`, `addVideo()` functions will handle the action of passing an url and mapping it through `Video.js` and `Displayer.js`, which is called **state management** in React.
+
+Now add the `constructor()` and `addVideo()` inside your class `App` and outside `render()` method.
+
+```javascript
+constructor() {
     super()
     this.state = {
         posts: [{
-            id: 0,
             videoLink: ""
-            }]
+        }]
     }
 }
 
@@ -105,31 +119,6 @@ addVideo(postSubmitted) {
         posts: [postSubmitted]
     }))
 }
-
-render () {
-    return (<div>
-        <Route exact path = "/" render={() => (
-            <div>
-                <Title title = {'No-Laugh Challenge'}/>
-                <Displayer posts = {this.state.posts} onNavigate = {this.navigate}/>
-            </div>
-        )}/>
-
-        <Route path= "/AddVideo" render = {({history}) => (
-            <div>
-              <AddVideo onAddVideo={(addedPost) => {
-                  console.log(addedPost)
-                  this.addVideo(addedPost)
-                  history.push('./')
-              }}/>
-            </div>
-        )}/>
-    </div>
-    )
-}
-}
-
-export default App;
 ```
 
 ### Title.js
@@ -153,12 +142,13 @@ export default Title
 
 ### Video.js
 
-This video component will define the video wrapper which will get the video from the url that we put into App.js, map it over to Video.js and play it.
+This video component will define and call the `video()` function which will get the video url that we put into AddVideo.js, map it over to Video.js and play it.
 
 `.propTypes` give the current component a property of PropTypes equals to an object. This object will have as many PropTypes as the amount of props that be passed on the current component.
 
-In this case Video component will have one PropTypes called `posts`, which is an mandatory PropTypes of an object; i.e. whatever prop in the form of posts from the component instance must be an object.  
- `.isRequired` means that if there is no post being passed into our `Displayer` component, throw a big error!
+In this case Video component will have one PropTypes called `posts`, which is an mandatory PropTypes of an object; i.e. whatever prop in the form of posts from the component instance must be an object.
+
+`.isRequired` means that if there is no post being passed into our `Displayer` component, it will throw a big error!
 
 ```javascript
 import React from 'react'
@@ -167,8 +157,8 @@ import ReactPlayer from 'react-player'
 
 function Video(props) {
     const post = props.post
-        return <div className = "video-wrapper">            
-            <ReactPlayer className = "video"
+        return <div>            
+            <ReactPlayer
             url = {post.videoLink}
             playing
             controls
@@ -185,22 +175,19 @@ export default Video
 
 ### Displayer.js
 
-In this case `Displayer` will have one PropTypes called `posts`, which is an mandatory PropTypes of an array; i.e. whatever prop in the form of posts from the component instance must be an array.  
-`.isRequired` means that if there is no post being passed into our `Displayer` component, throw a big error!
+Similarly in this case `Displayer()` function will have one PropTypes called `posts`, which is an mandatory PropTypes of an array; i.e. whatever prop in the form of posts from the component instance must be an array.
+
+The `displayer()` function will map with video link in `Video` component and display that value (which is a video in this case).
 
 
 ```javascript
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
 import Video from './Video'
 
 function Displayer(props) {
   return <div>
-      <Link className = "addIcon" to="AddVideo"></Link>
-      <div>
-          {props.posts.map((post, index) => <Video key = {index} post = {post}/>)}
-      </div>
+    {props.posts.map((post) => <Video post={post} />)}
   </div>
 }
 
@@ -212,7 +199,7 @@ export default Displayer
 ```
 
 ### AddVideo.js
-This component will handle the action of url input. It has one textbox for url and a button `Play` to submit the video link. This will change the state on our App.js and the `addVideo()` function will handle it, map it to Video.js, then to Displayer.js and display it through render() method in App.js
+This component will handle the action of url input. It has one textbox for url and a button `Play` to submit the video link. This will change the state on our App.js and the `addVideo()` function in `App.js` will handle it, map it to Video.js, then to Displayer.js and display it through render() method in App.js
 
 ```javascript
 import React, {Component} from 'react'
@@ -228,7 +215,6 @@ class AddVideo extends Component {
         event.preventDefault();
         const videoLink = event.target.elements.link.value
         const post = {
-            id: Number(new Date()),
             videoLink: videoLink
         }
         if (videoLink){
@@ -238,15 +224,14 @@ class AddVideo extends Component {
 
     render() {
         return (
-            <div>
-                <h1> No-Laugh Challenge </h1>
+            <h1>
                 <div className="form">
                     <form onSubmit={this.handleSubmit}>
-                        <input type = "text" placeholder="Link" name="link"/>
+                        <input type="text" placeholder="Link" name="link" />
                         <button> Play </button>
                     </form>
                 </div>
-            </div>
+            </h1>
         )
     }
 }
@@ -256,15 +241,45 @@ export default AddVideo
 
 ### index.js
 
-Now, we need to import ReactDOM, App, stylesheet, and {BrowserRouter} into index.js and wrap `<App/>` with `<BrowserRouter>` and `</BrowserRouter>`. Be careful that there **must not** be any space between `<BrowserRouter><App/></BrowserRouter>`
+Now, we need to import `ReactDOM`, `App`, and `stylesheet.css` into `index.js`.
 
 ```javascript
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import './Components/stylesheet.css'
-import {BrowserRouter} from 'react-router-dom'
+import './components/stylesheet.css'
 
-ReactDOM.render(<BrowserRouter><App/></BrowserRouter>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 ```
-Now you are good to go to next part: **Implement the cognitive service**
+
+### stylesheet.css
+
+Now we have done the core functions of the app to handle input and play a video url. Now we will do a little bit about css so that the interface would be more beautiful.
+
+Within the `components` folder, let's create a file named `stylesheet.css`. The following code is to set the UI of `h1` and `video-wrapper`.
+
+```css
+h1 {
+  text-align: center;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    border: 1px solid #d3d3d3;
+    overflow: hidden;
+}
+
+.video-wrapper iframe,
+.video-wrapper object,
+.video-wrapper embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+```
+Now you are good to go to next part: **Implementing the cognitive service**
