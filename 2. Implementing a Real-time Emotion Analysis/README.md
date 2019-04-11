@@ -111,7 +111,7 @@ Pass in both props as well as width and height into `<Webcam />` components .
 
 Try experimenting with width and height props to see how they affect the size of the video element.
 
-💡 **Tips:**  `Ctrl + A` to highlight all code then `ctrl + K + F` to automatically format the indentation!
+💡 **Tips:**  `Ctrl + A` to highlight all code then `Ctrl + K + F` to automatically format the indentation!
 
 <details><summary><b>View Code 🖱️<b></summary>
 <p>
@@ -155,6 +155,66 @@ export default MyWebcam
 </p>
 </details>
 
+### 1.5 Capturing images from webcam
+
+Let's create a method that will continuously take photos every 2 seconds (We will increase this rate later). 
+
+Define a constructor for **MyWebcam** class with two properties `this.timerId`, which will allow us to reference and call clearInterval() to stop taking photos later, `this.isCapturing` is a simple boolean flag that will us to stop updating the UI with API data that arrives after we have stopped the timer.
+
+Next, create **startCapturing** that execute a function to start the capturing process. Here we use `setInterval()` method to invoke `this.webcam.getScreenshot()` every 2 seconds which returns a base64 encoded string of the image. 
+
+Finally add a button under the **Webcam** component, add a button with onClick attribute to fires `startCapturing` into taking photos every 2 seconds.
+
+<details><summary><b>View Code 🖱️<b></summary>
+<p>
+
+```javascript
+
+class MyWebcam extends React.Component {
+    constructor(props) {
+        super(props);
+        this.timerId = null;
+        this.isCapturing = false;
+    }
+
+...
+
+    startCapturing = () => {
+        this.isCapturing = true;
+        this.timerId = setInterval(() => {
+            const image = this.webcam.getScreenshot();
+            console.log(image);
+        }, 2000);
+    }
+    
+    render() {
+    
+...
+
+        return (
+            <div>
+                <div>
+                <Webcam
+                    audio={false}
+                    height={1000}
+                    width={750}
+                    ref={this.setRef}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={videoConstraints}
+                />
+                </div>
+                <button variant="primary" onClick={this.startCapturing}>Start Game!</button>
+            </div>
+        );
+    }
+} 
+    
+   
+```
+
+
+</p>
+</details>
 
 
 
