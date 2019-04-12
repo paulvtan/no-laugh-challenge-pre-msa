@@ -1,5 +1,19 @@
 # A Simple Real-time Emotion Analyzer.
 
+##### Table of Contents  
+[Introduction](#introduction)
+
+[1. Building a webcam component](#1)
+
+[1.1 Install **react-webcam** package using npm](#1.1)
+
+[1. Building a webcam component](#1)
+
+[1. Building a webcam component](#1)
+
+
+<a name="introduction" />
+
 ## Introduction
 
 Welcome back to part 2 of **Cognitive Services** module. I hope you are learning lots and enjoying it so far! 📚
@@ -13,12 +27,15 @@ So you better keep a straight face!
 
  [place holder for a gif demo]
  
+<a name="1" />
  
 ## 1. Building a webcam component. 📷
  
  In this section, we will first build our **MyWebcam** component to display the video feed on the screen as well as taking care of sending/retreiving API data.
  
 We will use **_react-webcam_** package from **npm** to help us implement the webcam component. 
+
+<a name="1.1" />
 
 ### 1.1 Install **react-webcam** package using npm 
 
