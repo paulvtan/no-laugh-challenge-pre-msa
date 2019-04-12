@@ -31,7 +31,7 @@ class App extends Component {
             <div className="video-wrapper">
                 <Displayer posts={this.state.posts} />
             </div>
-                <h1><EmotionAnlysis /></h1>
+            <h1><EmotionAnlysis /></h1>
         </div>
         )
     }
