@@ -15,7 +15,7 @@
 
 [1.5 Capturing images from webcam](#1.5)
 
-[2. Fetching emotion data from Cognitive Services face API](#2)
+## [2. Fetching emotion data from Cognitive Services face API](#2)
 
 [2.1 Setting up Cognitive Services API](#2.1)
 
