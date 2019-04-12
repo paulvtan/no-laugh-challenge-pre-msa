@@ -242,6 +242,264 @@ Head over to your newly created service, note down the following
 
 <p align="center"><img src="images/2.1.3.png"  width="300" /> <img src="images/2.1.4.png"  width="300" /></p>
 
+### 2.2 Converting base64 encoded image to byte array.
+
+Looking at the [official document](https://westus.dev.cognitive.microsoft.com/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236) for Face API, we will be sending the data to the endpoint using POST method. The body of the request could contain either a URL to an image or an array of binary data.
+
+We will need to convert our base64 encoded string into an array of binary data. Let's use **base64-js** package to help us achieve this. 
+
+**Read more here:** [base64-js - npm](https://www.npmjs.com/package/base64-js)
+
+Open PowerShell in the project directory and run `npm i base64-js`.
+
+Add **convertToByteArray** function to the **MyWebcam** class.
+
+This function receive base64 encoded string, removed the header at the start and uses **base64-js** package to convert it to an array of byte.
+
+We can now convert our image to a correct format ready to be sent to the cognitive service endpoint. Add a new `const byteArrayImage = this.convertToByteArray(image);` to our `startCapturing` function.
+
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+
+    startCapturing = () => {
+        this.isCapturing = true;
+        this.timerId = setInterval(() => {
+            const image = this.webcam.getScreenshot();
+            const byteArrayImage = this.convertToByteArray(image);
+            console.log(image);
+        }, 2000);
+    }
+
+
+    convertToByteArray = (image) => {
+        const base64 = require('base64-js');
+        const base64string = image.split(',')[1];
+        return base64.toByteArray(base64string)
+    };
+```
+
+
+</p>
+</details>
+
+💡 **Tips:** Make sure to regularly test your app. Use `npm start` in PowerShell to launch your app.
+
+### 2.3 Using POST request to call cognitive services endpoint.
+
+Define `fetchData` function ,which takes in a byteArray and makes a POST request to the Azure cognitive service. We will supply the header with our apiKey and apiEndpoint we noted down earlier, the body of the request will contains our byteArray of the image.
+
+When specifying the apiEndpoint make sure to supply `/detect?returnFaceAttributes=emotion` argument at the end to return emotion data. Check out [API reference](https://westus.dev.cognitive.microsoft.com/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236) to see what other options are available, experiment at your own will! 
+
+e.g. `const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion'`
+
+For testing purposes we will `console.log(response.status)`. Make a call to `fetchData` function from the `startCapturing` function.
+
+Launch your app and inspect the console, if everything is configure correctly you should be able to see the `200` (200 OK) printed, success status response code indicates that the request has succeeded. 
+
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+
+    startCapturing = () => {
+        this.isCapturing = true;
+        this.timerId = setInterval(() => {
+            const image = this.webcam.getScreenshot();
+            const byteArrayImage = this.convertToByteArray(image);
+            this.fetchData(byteArrayImage);
+        }, 2000);
+    }
+
+
+
+    fetchData = (byteArray) => {
+        const apiKey = '[API-Key]';
+        const apiEndpoint = '[API-Endpoint]'
+        fetch(apiEndpoint, {
+            body: byteArray,
+            headers: {
+                'cache-control': 'no-cache', 'Ocp-Apim-Subscription-Key': apiKey, 'Content-Type': 'application/octet-stream'
+            },
+            method: 'POST'
+        }).then(response => {
+            console.log(response.status);
+        });
+    }
+```
+
+
+</p>
+</details>
+
+### 2.4 Retrieving a happiness intensity value from a JSON response object.
+
+We will be extracting the happiness intensity value from the response. (You can check the format of the JSON object return in the API reference.)
+
+From the response received, we first check if the response is `200 OK`. We then JSON parsed the response, which allows us to access this object properties easily.
+
+If we log the JSON data object to the console, we can see the following properties inside.
+
+
+<p align="center"><img src="images/2.4.1.png"  width="500" /></p>
+
+Therefore we extract the happiness value by grabbing first face object in the array returned from the response (if there's one), then get `faceAttributes`, then its `happiness` value respectively.
+
+var happiness = (data[0] != null ? data[0].faceAttributes.emotion.happiness : 0);
+
+Here we turn the value into `integer`, and into percentage by applying `happiness = (Math.round(happiness * 100))`.
+
+```javascript
+
+if (this.isCapturing && happiness < 100) {
+    console.log(happiness);
+} else {
+    clearInterval(this.timerId);
+    this.isCapturing = false;
+    console.log('stop');
+}                    
+
+```
+Above section simply check if happiness value reaches 100 then stop the game timer and set the `isCapturing` flag to false, so any left over response that arrives after the game has stopped will be ignored.
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+    fetchData = (byteArray) => {
+        const apiKey = '[API-Key]';
+        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion'
+        fetch(apiEndpoint, {
+            body: byteArray,
+            headers: {
+                'cache-control': 'no-cache', 'Ocp-Apim-Subscription-Key': apiKey, 'Content-Type': 'application/octet-stream'
+            },
+            method: 'POST'
+        }).then(response => {
+            if (response.ok) {
+                response.json().then(data => {
+                    var happiness = (data[0] != null ? data[0].faceAttributes.emotion.happiness : 0);
+                    happiness = (Math.round(happiness * 100))
+                    if (this.isCapturing && happiness < 100) {
+                        console.log(happiness);
+                    } else {
+                        clearInterval(this.timerId);
+                        this.isCapturing = false;
+                        console.log('stop');
+                    }
+                });
+            }
+        });
+    }
+```
+
+</p>
+</details>
+
+Now, test your app. In the console you should be getting the happiness intensity value based on your facial expression, and `stop` printed if the value reaches 100. 😊
+
+### Progress Check
+
+A quick progress check if you need. 
+
+Your **MyWebcam.js** should look like this. 
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+import React from 'react';
+import Webcam from 'react-webcam';
+import Button from 'react-bootstrap/Button';
+
+class MyWebcam extends React.Component {
+    constructor(props) {
+        super(props);
+        this.timerId = null;
+        this.isCapturing = false;
+    }
+
+    setRef = webcam => {
+        this.webcam = webcam;
+    };
+
+    startCapturing = () => {
+        this.isCapturing = true;
+        this.timerId = setInterval(() => {
+            const image = this.webcam.getScreenshot();
+            const byteArrayImage = this.convertToByteArray(image);
+            this.fetchData(byteArrayImage);
+        }, 100);
+    }
+
+    convertToByteArray = (image) => {
+        const base64 = require('base64-js');
+        const base64string = image.split(',')[1];
+        return base64.toByteArray(base64string)
+    };
+
+    fetchData = (byteArray) => {
+        const apiKey = '[API-Key]';
+        const apiEndpoint = '[API-Endpoint]'
+        fetch(apiEndpoint, {
+            body: byteArray,
+            headers: {
+                'cache-control': 'no-cache', 'Ocp-Apim-Subscription-Key': apiKey, 'Content-Type': 'application/octet-stream'
+            },
+            method: 'POST'
+        }).then(response => {
+            if (response.ok) {
+                response.json().then(data => {
+                    var happiness = (data[0] != null ? data[0].faceAttributes.emotion.happiness : 0);
+                    happiness = (Math.round(happiness * 100))
+                    if (this.isCapturing && happiness < 100) {
+                        this.props.onReceivedResult(happiness);
+                    } else {
+                        clearInterval(this.timerId);
+                        this.isCapturing = false;
+                        this.props.onReceivedResult(100);
+                    }
+                });
+            }
+        });
+    }
+
+    render() {
+        const videoConstraints = {
+            width: 750,
+            height: 500,
+            facingMode: "user"
+        };
+        return (
+            <div>
+                <div>
+                    <Webcam
+                        audio={false}
+                        height={250}
+                        width={375}
+                        ref={this.setRef}
+                        screenshotFormat="image/jpeg"
+                        videoConstraints={videoConstraints}
+                    />
+                </div>
+                <Button variant="primary" onClick={this.startCapturing}>Start Game!</Button>
+            </div>
+        );
+    }
+}
+
+export default MyWebcam;
+
+```
+
+
+</p>
+</details>
+
+
 ==============================================
 <details><summary><b>View Code</b> 🖱️ </summary>
 <p>
