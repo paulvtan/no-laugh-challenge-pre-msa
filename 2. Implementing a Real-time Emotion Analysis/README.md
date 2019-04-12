@@ -7,9 +7,26 @@
 
 [1.1 Install **react-webcam** package using npm](#1.1)
 
-[1. Building a webcam component](#1)
+[1.2 Create a webcam component](#1.2)
 
-[1. Building a webcam component](#1)
+[1.3 MyWebcam quick test](#1.3)
+
+[1.4 Adjusting the camera ](#1.4)
+
+[1.5 Capturing images from webcam](#1.5)
+
+[2. Fetching emotion data from Cognitive Services face API](#2)
+
+[2.1 Setting up Cognitive Services API](#2.1)
+
+[2.2 Converting base64 encoded image to byte array](#2.2)
+
+[2.3 Using POST request to call cognitive services endpoint](#2.3)
+
+[2.4 Retrieving a happiness intensity value from a JSON response object](#2.4)
+
+[MyWebcam.js Progress Check](#2c)
+
 
 
 <a name="introduction" />
@@ -45,6 +62,8 @@ Open powershell in the project directory and type `npm i react-webcam` to instal
 
 Read more: [react-webcam - npm](https://www.npmjs.com/package/react-webcam) 
 
+<a name="1.2" />
+
 ### 1.2 Create a webcam component
 
 Create a new JavaScript file under the **components** folder called **MyWebcam.js**.
@@ -71,7 +90,7 @@ export default MyWebcam
 
 </details>
 
-
+<a name="1.3" />
 
 ### 1.3 MyWebcam quick test 🔧
 
@@ -114,6 +133,8 @@ class App extends Component {
 
 
 You should be able see the webcam in effect!
+
+<a name="1.4" />
 
 ### 1.4 Adjusting the camera 
 
@@ -170,6 +191,8 @@ export default MyWebcam
 
 </p>
 </details>
+
+<a name="1.5" />
 
 ### 1.5 Capturing images from webcam
 
@@ -236,9 +259,13 @@ class MyWebcam extends React.Component {
 </p>
 </details>
 
+<a name="2" />
+
 ## 2. Fetching emotion data from Cognitive Services face API
 
 We will construct a function to send off an image and fetch a JSON response from the Microsoft Cognitive Services Face API.
+
+<a name="2.1" />
 
 ### 2.1 Setting up Cognitive Services API
 
@@ -259,7 +286,9 @@ Head over to your newly created service, note down the following
 
 <p align="center"><img src="images/2.1.3.png"  width="300" /> <img src="images/2.1.4.png"  width="300" /></p>
 
-### 2.2 Converting base64 encoded image to byte array.
+<a name="2.2" />
+
+### 2.2 Converting base64 encoded image to byte array
 
 Looking at the [official document](https://westus.dev.cognitive.microsoft.com/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236) for Face API, we will be sending the data to the endpoint using POST method. The body of the request could contain either a URL to an image or an array of binary data.
 
@@ -304,7 +333,9 @@ We can now convert our image to a correct format ready to be sent to the cogniti
 
 💡 **Tips:** Make sure to regularly test your app. Use `npm start` in PowerShell to launch your app.
 
-### 2.3 Using POST request to call cognitive services endpoint.
+<a name="2.3" />
+
+### 2.3 Using POST request to call cognitive services endpoint
 
 Define `fetchData` function ,which takes in a byteArray and makes a POST request to the Azure cognitive service. We will supply the header with our apiKey and apiEndpoint we noted down earlier, the body of the request will contains our byteArray of the image.
 
@@ -352,7 +383,9 @@ Launch your app and inspect the console, if everything is configure correctly yo
 </p>
 </details>
 
-### 2.4 Retrieving a happiness intensity value from a JSON response object.
+<a name="2.4" />
+
+### 2.4 Retrieving a happiness intensity value from a JSON response object
 
 We will be extracting the happiness intensity value from the response. (You can check the format of the JSON object return in the API reference.)
 
@@ -418,7 +451,9 @@ Above section simply check if happiness value reaches 100 then stop the game tim
 
 Now, test your app. In the console you should be getting the happiness intensity value based on your facial expression, and `stop` printed if the value reaches 100. 😊
 
-### Progress Check
+<a name="2c" />
+
+### MyWebcam.js Progress Check
 
 A quick progress check if you need. 
 
