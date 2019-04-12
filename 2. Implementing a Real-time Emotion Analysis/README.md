@@ -219,9 +219,28 @@ class MyWebcam extends React.Component {
 </p>
 </details>
 
-## 2. Fetching emotion data from Cognitive Services Face API.
+## 2. Fetching emotion data from Cognitive Services face API
 
-We will construct a function to send off an image and fetch a JSON response from the Microsoft Cognitive Services API. 
+We will construct a function to send off an image and fetch a JSON response from the Microsoft Cognitive Services Face API.
+
+### 2.1 Setting up Cognitive Services API
+
+We can easily create our own instance of cognitive service to use through Azure. 
+
+Log in to your [Azure portal](https://portal.azure.com), and in **+ Create a resource** search for 'Cognitive Services'
+
+<p align="center"><img src="images/2.1.1.png"  width="500" /></p>
+
+Go ahead and configure the setting as neccessary, in the **pricing tier** make sure to choose **S0** (10 Calls per second) so we are not limited to only 20 calls per minute. The trail credit Azure gave should be plenty for us to test & try out with our project.
+
+<p align="center"><img src="images/2.1.2.png"  width="300" /></p>
+
+Head over to your newly created service, note down the following
+
+- **Overview -> Endpoint** note down the endpoint url.
+- **Resource Management -> Keys** note down the key value.
+
+<p align="center"><img src="images/2.1.3.png"  width="300" /> <img src="images/2.1.4.png"  width="300" /></p>
 
 ==============================================
 <details><summary><b>View Code</b> 🖱️ </summary>
