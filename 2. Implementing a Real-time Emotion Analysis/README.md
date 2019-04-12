@@ -15,7 +15,7 @@
 
 [1.5 Capturing images from webcam](#1.5)
 
-## [2. Fetching emotion data from Cognitive Services face API](#2)
+## [2. Fetching emotion from Cognitive Services face API](#2)
 
 [2.1 Setting up Cognitive Services API](#2.1)
 
@@ -25,7 +25,14 @@
 
 [2.4 Retrieving a happiness intensity value from a JSON response object](#2.4)
 
+## [3. Adding states to a component](#3)
+
+[3.1 Adding a dynamic banner to display happiness intensity](#3.1)
+
 [MyWebcam.js Progress Check](#2c)
+
+[MyWebcam.js Progress Check](#2c)
+
 
 
 
@@ -261,7 +268,7 @@ class MyWebcam extends React.Component {
 
 <a name="2" />
 
-## 2. Fetching emotion data from Cognitive Services face API
+## 2. Fetching emotion from Cognitive Services face API
 
 We will construct a function to send off an image and fetch a JSON response from the Microsoft Cognitive Services Face API.
 
@@ -550,6 +557,43 @@ export default MyWebcam;
 
 </p>
 </details>
+
+<a name="3" />
+
+## 3. Adding states to a component
+
+We will be creating another component. Add **EmotionAnalysis.js** under component folder. Here we will need to use React states and props to get our happiness intensity value to display to the user.
+
+
+`useState()` returns an array with 2 elements. 
+
+- State object (Can be any type)
+- function to change the object.
+
+This will allows us to pass the function into Webcam component so that it can use `updateResult()` to update the state `result` value.
+
+We passed in `useState(0)` to set the initial `result` state to 0.
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+function EmotionAnalysis() {
+    const [result, updateResult] = useState(0);
+    return (
+        <div />
+    );
+}
+```
+
+</p>
+</details>
+
+<a name="3.1" />
+
+### 3.1 Adding a dynamic banner to display happiness intensity %
+
+
 
 
 ==============================================
