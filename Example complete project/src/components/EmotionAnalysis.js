@@ -4,14 +4,19 @@ import MyWebcam from './MyWebcam'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Alert from 'react-bootstrap/Alert'
 import {Container, Row, Col} from 'react-bootstrap';
+import Draggable from 'react-draggable';
 
 
 function EmotionAnalysis() {
     const [result, updateResult] = useState(0);
     return (
         <div>
-            <MyWebcam onReceivedResult={updateResult}/>
-            <Result result={result} />
+            <Draggable>
+                <div>
+                    <MyWebcam onReceivedResult={updateResult} />
+                    <Result result={result} />
+                </div>
+            </Draggable>
         </div>
     );
 }
