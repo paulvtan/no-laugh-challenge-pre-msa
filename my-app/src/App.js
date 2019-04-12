@@ -3,7 +3,6 @@ import './components/stylesheet.css'
 import Displayer from './components/Displayer'
 import Title from './components/Title'
 import AddVideo from './components/AddVideo'
-import Draggable from 'react-draggable';
 import EmotionAnlysis from './components/EmotionAnalysis'
 
 class App extends Component {
@@ -32,9 +31,7 @@ class App extends Component {
             <div className="video-wrapper">
                 <Displayer posts={this.state.posts} />
             </div>
-            <Draggable>
-                <h1><EmotionAnlysis /></h1>
-            </Draggable>
+            <h1><EmotionAnlysis /></h1>
         </div>
         )
     }
