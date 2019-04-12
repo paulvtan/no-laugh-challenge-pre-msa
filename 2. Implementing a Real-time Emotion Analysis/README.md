@@ -3,7 +3,7 @@
 ##### Table of Contents  
 [Introduction](#introduction)
 
-[1. Building a webcam component](#1)
+## [1. Building a webcam component](#1)
 
 [1.1 Install **react-webcam** package using npm](#1.1)
 
