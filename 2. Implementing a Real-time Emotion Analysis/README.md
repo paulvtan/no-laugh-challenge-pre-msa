@@ -36,6 +36,8 @@
 
 [EmotionAnalysis.js Progress Check](#3c)
 
+[EmotionAnalysis.js Progress Check](#3c)
+
 
 
 
@@ -756,6 +758,8 @@ export default EmotionAnalysis
 </p>
 </details>
 
+<a name="3.3" />
+
 ### 3.3 Making webcam component moveable
 
 Back in **App.js** add **EmotionAnalysis** and uncomment components from part 1, launching the app you should see part 2 components at the bottom. Wouldn't it be nice if we can freely move this webcam preview around when we play the game? Let's do exactly that.
@@ -776,18 +780,48 @@ Back in **App.js** add **EmotionAnalysis** and uncomment components from part 1,
     }
 ```
 
+Install [react-draggable](https://www.npmjs.com/package/react-draggable) by running `npm install react-draggable`, and to make the cognitive service component draggable, in **EmotionAnalysis** component, surround both **MyWebcam** and **Result** components with `<Draggable>` component. 
 
-
-
-==============================================
 <details><summary><b>View Code</b> 🖱️ </summary>
 <p>
 
 ```javascript
+import React from 'react';
+import { useState } from 'react';
+import MyWebcam from './MyWebcam'
+import Draggable from 'react-draggable';
+
+
+
+function EmotionAnalysis() {
+    const [result, updateResult] = useState(0);
+    return (
+        <div>
+            <Draggable>
+                <div>
+                    <MyWebcam onReceivedResult={updateResult} />
+                    <Result result={result} />
+                </div>
+            </Draggable>
+        </div>
+    );
+}
+
 ```
+Test your app, and see if everything works as intended. 
+
 
 
 </p>
 </details>
+
+💡 **Tips:** Back in `startCapturing` function in **MyWebcam** remember to experiment with API calls rate to adjust responsiveness. Maximum is 10 calls per second. 
+
+
+### Conclusion
+
+And that's it! Congratulation, Evelyn and I hope you have enjoyed experimenting with cognitive services! Thank you all for reading up til this point. You are more than welcome to apply parts of this tutorial to your own project, but remember you can't use this example as your submission.
+
+Good luck with the rest of the MSA program! ✌️
 
 
