@@ -38,6 +38,7 @@
 
 [3.3 Making webcam component movable](#3.3)
 
+## [Conclusion](#conclusion)
 
 
 
@@ -52,9 +53,6 @@ In this module we will be building an emotion analyzer component that detects an
 Utilizing your webcam and cognitive services, we will build a movable camera preview components with a dynamic 'hapiness' meter. As you may have guessed, if the meter filled up to 100% then the player will be prompted a **'GAME OVER'** banner. 
 
 So you better keep a straight face!   
-
-
- [place holder for a gif demo]
  
 <a name="1" />
  
@@ -816,6 +814,7 @@ Test your app. You should have a fully working Try Not to Laugh Challenge the Ga
 
 💡 **Tips:** Back in `startCapturing` function in **MyWebcam** remember to experiment with API calls rate to adjust responsiveness. Maximum is 10 calls per second. 
 
+<a name="conclusion" />
 
 ### Conclusion
 
