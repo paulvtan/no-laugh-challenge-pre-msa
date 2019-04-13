@@ -113,7 +113,24 @@ Now that you have your environment setup and ready to go. Read a bit about the s
 
 ## Submission Criteria
 
-Coming soon.
+The following are the submission requirements from this Cognitive Services moduel.
+
+#### Web Application utilizing cognitive services
+
+Create a web application utilizing any of the Cognitive Service APIs. The app must be your own and is substantially different from the example demonstrated in this guide, i.e. it cannot be 'Try not to laugh challenge'. 
+
+**Submit the following**
+
+1. Link to your deployed web application on Azure.
+2. Link to your GitHub repository. (Make sure the repo is public)
+3. Screenshot of your profile showing 
+- [Complete faces with computer vision module](https://docs.microsoft.com/en-us/learn/modules/identify-faces-with-computer-vision/)
+
+<img src="images/microsoft-learn.PNG"  width="200"/>
+
+- 1 another complete module relevant to cognitive services from Microsoft Learn platform.
+
+Suggestion: [Microsoft Learn: Cognitive Services](https://docs.microsoft.com/en-us/learn/browse/?term=cognitive%20services)
 
 ## Where from here?
 
