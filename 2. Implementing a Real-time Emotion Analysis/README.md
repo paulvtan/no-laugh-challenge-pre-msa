@@ -36,7 +36,7 @@
 
 [EmotionAnalysis.js Progress Check](#3c)
 
-[EmotionAnalysis.js Progress Check](#3c)
+[3.3 Making webcam component movable](#3.3)
 
 
 
@@ -760,7 +760,7 @@ export default EmotionAnalysis
 
 <a name="3.3" />
 
-### 3.3 Making webcam component moveable
+### 3.3 Making webcam component movable
 
 Back in **App.js** add **EmotionAnalysis** and uncomment components from part 1, launching the app you should see part 2 components at the bottom. Wouldn't it be nice if we can freely move this webcam preview around when we play the game? Let's do exactly that.
 
