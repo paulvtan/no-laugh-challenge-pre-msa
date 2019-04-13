@@ -593,6 +593,25 @@ function EmotionAnalysis() {
 
 ### 3.1 Adding a dynamic banner to display happiness intensity %
 
+Added the following function component **Result** to **EmotionAnalysis.js**. This Result components takes in our **result** state object, and return a `<h1>[Emotion Intensity Value]</h1>` to display to user if the value is < 100 otherwise return string "Game Over!".
+
+
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+function Result(props) {
+    return (
+        <div>
+            <h1>{props.result < 100 ? props.result + '%' : "Game Over!"}</h1>
+        </div>
+    );
+}
+```
+
+</p>
+</details>
 
 
 
