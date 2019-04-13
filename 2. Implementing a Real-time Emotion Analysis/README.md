@@ -808,12 +808,11 @@ function EmotionAnalysis() {
 }
 
 ```
-Test your app, and see if everything works as intended. 
-
-
 
 </p>
 </details>
+
+Test your app. You should have a fully working Try Not to Laugh Challenge the Game!  
 
 💡 **Tips:** Back in `startCapturing` function in **MyWebcam** remember to experiment with API calls rate to adjust responsiveness. Maximum is 10 calls per second. 
 
