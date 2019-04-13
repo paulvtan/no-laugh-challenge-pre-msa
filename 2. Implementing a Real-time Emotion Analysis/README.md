@@ -1,7 +1,8 @@
 # A Simple Real-time Emotion Analyzer.
 
-##### Table of Contents  
-[Introduction](#introduction)
+## Table of Contents
+
+## [Introduction](#introduction)
 
 ## [1. Building a webcam component](#1)
 
@@ -25,13 +26,15 @@
 
 [2.4 Retrieving a happiness intensity value from a JSON response object](#2.4)
 
+[MyWebcam.js Progress Check](#2c)
+
 ## [3. Adding states to a component](#3)
 
 [3.1 Adding a dynamic banner to display happiness intensity](#3.1)
 
-[MyWebcam.js Progress Check](#2c)
+[3.2 Dynamically update `result` state using `updateResult` function](#3.2)
 
-[MyWebcam.js Progress Check](#2c)
+[EmotionAnalysis.js Progress Check](#3c)
 
 
 
@@ -515,11 +518,11 @@ class MyWebcam extends React.Component {
                     var happiness = (data[0] != null ? data[0].faceAttributes.emotion.happiness : 0);
                     happiness = (Math.round(happiness * 100))
                     if (this.isCapturing && happiness < 100) {
-                        this.props.onReceivedResult(happiness);
+                        console.log(happiness);
                     } else {
                         clearInterval(this.timerId);
                         this.isCapturing = false;
-                        this.props.onReceivedResult(100);
+                        console.log('stop');
                     }
                 });
             }
@@ -613,10 +616,15 @@ function Result(props) {
 </p>
 </details>
 
+<a name="3.2" />
 
-### 3.2 Putting it all together
+### 3.2 Dynamically update `result` state using `updateResult` function
 
-We are gonna wrap our **Webcam** component in **EmotionAnalysis** component along with the result banner, make sure to `export default EnotionAnalysis` 
+We will need to pass this function into our **MyWebcam** component so that the response return from the API in **fetchData** function have a way of updating our banner value.
+
+In **EmotionAnalysis** function component return statement, wrap both **MyWebcam** and **Result** components and pass in the our state object result into **Result** component, pass in updateResult function into **MyWebcam** component as onReceivedResult respectively. 
+
+Don't forget to `export default EmotionAnalysis` so that we can import and use this component in **App.js**.
 
 <details><summary><b>View Code</b> 🖱️ </summary>
 <p>
@@ -647,14 +655,127 @@ function Result(props) {
 }
 
 export default EmotionAnalysis
-
 ```
-
-
 
 
 </p>
 </details>
+
+Inside the **MyWebcam** component `fetchData` function, from the props we passed in, accessed the `onReceivedResult` function using `this.props.onReceivedResult(value)` and passes in happiness value. 
+
+In the case where happiness value is 100, we simply just calls `this.props.onReceivedResult(100)` to display 'Game Over!' banner to the user. 
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+    fetchData = (byteArray) => {
+        const apiKey = '022279c219444877b2491814b1b1c9ac';
+        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceAttributes=emotion'
+        fetch(apiEndpoint, {
+            body: byteArray,
+            headers: {
+                'cache-control': 'no-cache', 'Ocp-Apim-Subscription-Key': apiKey, 'Content-Type': 'application/octet-stream'
+            },
+            method: 'POST'
+        }).then(response => {
+            if (response.ok) {
+                response.json().then(data => {
+                    var happiness = (data[0] != null ? data[0].faceAttributes.emotion.happiness : 0);
+                    happiness = (Math.round(happiness * 100))
+                    if (this.isCapturing && happiness < 100) {
+                        this.props.onReceivedResult(happiness);
+                    } else {
+                        clearInterval(this.timerId);
+                        this.isCapturing = false;
+                        this.props.onReceivedResult(100);
+                    }
+                });
+            }
+        });
+    }
+
+```
+
+Also on **MyWebcam.js** component, Let's make the webcam preview element smaller so it doesn't obsecure the video player, adjust the height and width of the **Webcam** element to `250` and `375` respectively.  
+
+```javascript
+ <Webcam
+     audio={false}
+     height={250}
+     width={375}
+     ref={this.setRef}
+     screenshotFormat="image/jpeg"
+     videoConstraints={videoConstraints}
+ />
+```
+
+</p>
+</details>
+
+<a name="3c" />
+
+### EmotionAnalysis.js Progress Check
+
+A quick progress check if you need. 
+
+Your **EmotionAnalysis.js** should look like this. 
+
+<details><summary><b>View Code</b> 🖱️ </summary>
+<p>
+
+```javascript
+import React from 'react';
+import { useState } from 'react';
+import MyWebcam from './MyWebcam'
+
+
+
+function EmotionAnalysis() {
+    const [result, updateResult] = useState(0);
+    return (
+        <div>
+            <MyWebcam onReceivedResult={updateResult} />
+            <Result result={result} />
+        </div>
+    );
+}
+
+function Result(props) {
+    return (
+        <div>
+            <h1>{props.result < 100 ? props.result + '%' : "Game Over!"}</h1>
+        </div>
+    );
+}
+
+export default EmotionAnalysis
+```
+
+
+</p>
+</details>
+
+### 3.3 Making webcam component moveable
+
+Back in **App.js** add **EmotionAnalysis** and uncomment components from part 1, launching the app you should see part 2 components at the bottom. Wouldn't it be nice if we can freely move this webcam preview around when we play the game? Let's do exactly that.
+
+```javascrip
+    render() {
+        return (<div>
+            <Title title={'No-Laugh Challenge'} />
+            <AddVideo onAddVideo={(addedPost) => {
+                this.addVideo(addedPost)
+            }}/>
+            <div className = "video-wrapper">
+                <Displayer posts={this.state.posts} />
+            </div>
+            <h1><EmotionAnalysis /></h1>
+        </div>
+        )
+    }
+```
+
 
 
 
